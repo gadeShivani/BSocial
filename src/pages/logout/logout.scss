@@ -1,3 +1,25 @@
 page-logout {
+  .colorchange {
+    background: linear-gradient(338deg, #c747b9, #bbed7d, #eb4215, #526ced);
+    background-size: 400%;
+    animation: Colorchange 46s ease infinite;
+    -webkit-animation: Colorchange 46s ease infinite;
 
+  }
+
+ @keyframes Colorchange {
+   0%{background-position:11% 0%}
+   50%{background-position:90% 100%}
+   100%{background-position:11% 0%}
+ }
+ @webkit-keyframes Colorchange  {
+   0%{background-position:11% 0%}
+   50%{background-position:90% 100%}
+   100%{background-position:11% 0%}
+ }
+
+h1{
+  padding-top: 30%;
+  text-align: center;
+}
 }

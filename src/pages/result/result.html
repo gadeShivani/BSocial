@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons start>
+  <ion-navbar color="secondary">
+    <ion-buttons float-left>
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -15,5 +15,96 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+
+<ion-content class="colorchange" padding>
+
+  <ion-list>
+    <ion-card>
+      <ion-card-title text-center padding>
+        March 2018
+      </ion-card-title>
+    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
+
+    <ion-card-content>
+      <h1>Idea One</h1>
+      <p>
+        This idea is submitted for NYC by a new yorker.
+      </p>
+    </ion-card-content>
+
+    <ion-row  no-padding>
+      <ion-col col-6 text-center color="secondary">
+        <button ion-button clear small color="secondary" icon-start>
+        <ion-icon name='heart' color="secondary"></ion-icon>1.22M
+      </button>
+      </ion-col>
+      <ion-col  col-6 text-center>
+        <button ion-button clear small color="secondary" icon-start>
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+
+    </ion-card>
+
+    <ion-card>
+      <ion-card-title text-center padding>
+        February 2018
+      </ion-card-title>
+    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
+
+    <ion-card-content>
+      <h1>Idea One</h1>
+      <p>
+        This idea is submitted for NYC by an Expat.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+
+      <ion-col col-6 text-center color="secondary">
+        <button ion-button clear small color="secondary" icon-start>
+        <ion-icon name='heart' color="secondary"></ion-icon>119k
+      </button>
+      </ion-col>
+      <ion-col  col-6 text-center>
+        <button ion-button clear small color="secondary" icon-start>
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+
+    </ion-card>
+    <ion-card>
+      <ion-card-title text-center padding>
+        January 2018
+      </ion-card-title>
+    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
+
+    <ion-card-content>
+      <h1>Idea One</h1>
+      <p>
+        This idea is submitted for NYC by a tourist.
+      </p>
+    </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col col-6 text-center color="secondary">
+        <button ion-button clear small color="secondary" icon-start>
+        <ion-icon name='heart' color="secondary"></ion-icon>29k
+      </button>
+      </ion-col>
+      <ion-col  col-6 text-center>
+        <button ion-button clear small color="secondary" icon-start>
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+    </ion-card>
+  </ion-list>
 </ion-content>

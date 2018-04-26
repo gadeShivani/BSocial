@@ -6,16 +6,77 @@
 -->
 <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons start>
+    <ion-buttons float-left>
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>USER NAME</ion-title>
+    <ion-title>Rachel Green</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="colorchange" padding>
   <ion-card>
+
+    <ion-card-header text-center color="light">
+  Personal Info
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <img class="circle-pic" src="assets/imgs/rachel.jpg" />
+        </ion-item>
+
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" value="Rachel Green"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>New Password</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirm New Password</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    </ion-card-content>
+
   </ion-card>
+
+
+
+<ion-card>
+
+  <ion-card-header text-center color="light">
+    Weekly updates on
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list>
+
+      <ion-item>
+        <ion-label>New Ideas</ion-label>
+        <ion-checkbox></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Liked Ideas</ion-label>
+        <ion-checkbox disabled="true"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Winners</ion-label>
+        <ion-checkbox></ion-checkbox>
+      </ion-item>
+
+    </ion-list>
+  </ion-card-content>
+
+</ion-card>
+<button ion-button color="primary" full>Save</button>
+
 </ion-content>

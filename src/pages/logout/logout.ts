@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the LogoutPage page.
  *
@@ -14,12 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'logout.html',
 })
 export class LogoutPage {
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LogoutPage');
+    setTimeout(() =>
+    {
+        // this.navCtrl.setRoot('LoginPage');
+        // this.navCtrl.push('LoginPage');
+    },
+    2000);
   }
 
 }
