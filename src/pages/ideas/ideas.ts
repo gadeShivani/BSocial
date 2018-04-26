@@ -15,15 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class IdeasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.visible = false;
+  // let  this.visible = false;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IdeasPage');
   }
 
-  toggle() {
-   this.visible = !this.visible;
-  }
+  // toggle() {
+  //  this.visible = !this.visible;
+  // }
 
 }
