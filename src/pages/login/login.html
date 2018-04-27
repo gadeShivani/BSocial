@@ -11,22 +11,51 @@
 </ion-header> -->
 
 <ion-content class="colorchange" padding>
-  <h1 ion-text color="light" class="headername">BSocial</h1>
+  <h1 ion-text color="light" class="headername">
+  <img src="assets/imgs/text.png" class="bannerimg"/>
+</h1>
+  <form (ngSubmit)="doLogin()" [formGroup]="loginForm">
+		<ion-list inset>
 
-   <ion-list>
-     <ion-item>
-       <ion-label floating>Email</ion-label>
-       <ion-input type="text" value=""></ion-input>
-     </ion-item>
+			<ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
+				<ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+			</ion-item>
 
-   </ion-list>
-   <ion-list>
-     <ion-item>
-       <ion-label floating>Password</ion-label>
-       <ion-input type="Password" value=""></ion-input>
-     </ion-item>
-   </ion-list>
+			<div ngxErrors="email" #emailErrors="ngxErrors">
+				<div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">It should be a valid email</div>
+			</div>
 
+			<ion-item [ngClass]="{ invalid: passwordErrors.hasError('*', ['touched']) }">
+				<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+			</ion-item>
 
-  <button ion-button color="primary" full (click)="doLogin()">Login</button>
+			<div ngxErrors="password" #passwordErrors="ngxErrors">
+				<div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 5 characters</div>
+			</div>
+		</ion-list>
+
+		<div padding-horizontal>
+			<div class="form-error">{{loginError}}</div>
+
+			<button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
+			<div class="login-footer" text-center>
+				<p>
+					If you're a new user, please sign up.
+				</p>
+			</div>
+
+			<ion-list>
+
+				<button ion-button color="light" icon-left block clear (click)="loginWithGoogle()">
+					<ion-icon name="logo-google" color="light" ></ion-icon>
+					Log in with Google
+				</button>
+
+				<button ion-button color="light" icon-left block clear (click)="signup()">
+					<ion-icon  color="light" name="person-add"></ion-icon>
+					Sign up
+				</button>
+			</ion-list>
+		</div>
+	</form>
 </ion-content>
