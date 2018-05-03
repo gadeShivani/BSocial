@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {LoginPage} from '../../pages/login/login';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the LogoutPage page.
@@ -15,16 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'logout.html',
 })
 export class LogoutPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider) {
   }
 
   ionViewDidLoad() {
+    if(!(this.auth.getCurrentUser())){
+      this.navCtrl.setRoot(LoginPage);
+    }else{
     setTimeout(() =>
-    {
-        // this.navCtrl.setRoot('LoginPage');
-        // this.navCtrl.push('LoginPage');
+    {    this.auth.signOut();
+        this.navCtrl.setRoot(LoginPage);
     },
     2000);
   }
+}
 
 }

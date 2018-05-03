@@ -5,13 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {firebaseConfig} from '../config';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { AppdataProvider } from '../providers/appdata/appdata';
+import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     BrowserModule,
     NgxErrorsModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig.fire)
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    AngularFirestoreModule.enablePersistence() //.enablePersistence() used for offline storage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,8 +38,10 @@ import { NgxErrorsModule } from '@ultimate/ngxerrors';
     StatusBar,
     SplashScreen,
     AngularFireAuth,
+    AngularFirestore,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    AppdataProvider
   ]
 })
 export class AppModule {}

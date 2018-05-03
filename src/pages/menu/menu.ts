@@ -5,7 +5,8 @@ import { LogoutPage } from '../logout/logout';
 import { TabsPage } from './../tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
-
+import { AuthProvider } from '../../providers/auth/auth';
+import {LoginPage} from '../../pages/login/login';
 /**
  * Generated class for the MenuPage page.
  *
@@ -42,7 +43,13 @@ import { IonicPage, NavController, Nav } from 'ionic-angular';
      // { title: 'Special', pageName: 'SpecialPage', icon: 'shuffle' },
    ];
 
-   constructor(public navCtrl: NavController) { }
+   constructor(public navCtrl: NavController,public auth: AuthProvider) {
+     if(!(this.auth.getCurrentUser())){
+       this.navCtrl.setRoot(LoginPage);
+     }else{
+       console.log((this.auth.getCurrentUser()).uid);
+     }
+   }
 
    openPage(page: PageInterface) {
      let params = {};

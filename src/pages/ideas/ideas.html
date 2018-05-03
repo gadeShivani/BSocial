@@ -16,7 +16,7 @@
     </ion-buttons>
     <ion-title>IDEAS</ion-title>
     <ion-buttons end>
-      <button ion-button>
+      <button ion-button (click)="addIdea()">
       <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -25,90 +25,28 @@
 
 <ion-content class="colorchange" padding>
 
-  <ion-list>
+  <ion-list *ngFor="let idea of ideas | async" >
     <ion-card>
       <ion-card-title text-center padding>
-        Idea One
+        {{idea.idea_title}}
       </ion-card-title>
-    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
+    <img class="ideaimg" src="{{idea.image}}"/>
 
     <ion-card-content>
 
       <p>
-        This idea is submitted for NYC by a new yorker.
+        {{idea.idea_description}}
       </p>
     </ion-card-content>
 
     <ion-row  no-padding>
-      <ion-col col-4 text-center>
+      <ion-col col-6 text-center>
         <button ion-button clear small color="secondary" icon-start>
           <ion-icon name='heart'></ion-icon>
-          Like
-        </button>
-      </ion-col>
-      <ion-col  col-4 text-center>
-        <button ion-button clear small color="secondary" icon-start>
-          <ion-icon name='share-alt'></ion-icon>
-          Share
-        </button>
-      </ion-col>
-      <ion-col col-4 text-center padding-top>
-        2hrs ago
-      </ion-col>
-    </ion-row>
-
-    </ion-card>
-
-    <ion-card>
-      <ion-card-title text-center padding>
-        Idea Two
-      </ion-card-title>
-    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
-
-    <ion-card-content>
-
-      <p>
-        This idea is submitted for NYC by an Expat.
-      </p>
-    </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col col-6 text-center>
-        <button col-6 ion-button clear small color="secondary" icon-start>
-          <ion-icon name='heart-outline'></ion-icon>
-          Like
+          Like {{idea.likes}}
         </button>
       </ion-col>
       <ion-col  col-6 text-center>
-        <button col-6 ion-button clear small color="secondary" icon-start>
-          <ion-icon name='share-alt'></ion-icon>
-          Share
-        </button>
-      </ion-col>
-    </ion-row>
-
-    </ion-card>
-    <ion-card>
-      <ion-card-title text-center padding>
-        Idea Three
-      </ion-card-title>
-    <img class="ideaimg" src="assets/imgs/idea.jpg"/>
-
-    <ion-card-content>
-
-      <p>
-        This idea is submitted for NYC by a tourist.
-      </p>
-    </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col col-6 text-center>
-        <button ion-button clear small color="secondary" icon-start>
-          <ion-icon name='heart-outline'></ion-icon>
-          Like
-        </button>
-      </ion-col>
-      <ion-col col-6 text-center>
         <button ion-button clear small color="secondary" icon-start>
           <ion-icon name='share-alt'></ion-icon>
           Share
@@ -117,5 +55,7 @@
     </ion-row>
 
     </ion-card>
+
+
   </ion-list>
 </ion-content>
