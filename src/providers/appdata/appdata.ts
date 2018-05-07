@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+interface Items {
+  idea_title:string,
+  idea_description:string,
+  image:string,
+  likes:{},
+  totalLikes:number
+  uid:string,
+  date_added:string
+}
 /*
   Generated class for the AppdataProvider provider.
 
@@ -10,6 +20,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class AppdataProvider {
+
   ideasCollection: AngularFirestoreCollection<Items>; //Firestore collection
   ideas: Observable<Items[]>;
   constructor(private afs: AngularFirestore) {
@@ -22,19 +33,22 @@ export class AppdataProvider {
 
   addIdea(data,uid,date){
     this.ideasCollection.add({
-      idea_title:data.idea_title,
-      idea_description:data.idea_description,
-      image:"https://png.pngtree.com/thumb_back/fw800/back_pic/03/70/72/5257b6c12d89875.jpg",
-      likes:0,
+      idea_title:data.value.idea_title,
+      idea_description:data.value.idea_description,
+      image:data.value.image_url,
+      likes:{},
+      totalLikes:0,
       uid:uid,
       date_added:date
     })
     .then( (result) => {
         console.log("Document addded with id >>> ", result.id);
+
     })
     .catch( (error) => {
         console.error("Error adding document: ", error);
     });
+
   }
 
 

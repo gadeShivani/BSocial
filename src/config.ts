@@ -5,6 +5,7 @@ export const firebaseConfig = {
      databaseURL: "https://bscoial-ionic.firebaseio.com",
      projectId: "bscoial-ionic",
      storageBucket: "bscoial-ionic.appspot.com",
-     messagingSenderId: "961108672121"
+     messagingSenderId: "961108672121",
+     timestampsInSnapshots: true
 }
 };

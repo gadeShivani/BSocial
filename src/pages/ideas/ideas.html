@@ -29,6 +29,7 @@
     <ion-card>
       <ion-card-title text-center padding>
         {{idea.idea_title}}
+        <!-- {{idea.name}} -->
       </ion-card-title>
     <img class="ideaimg" src="{{idea.image}}"/>
 
@@ -43,7 +44,7 @@
       <ion-col col-6 text-center>
         <button ion-button clear small color="secondary" icon-start>
           <ion-icon name='heart'></ion-icon>
-          Like {{idea.likes}}
+          Like {{idea.totalLikes}}
         </button>
       </ion-col>
       <ion-col  col-6 text-center>
@@ -58,4 +59,5 @@
 
 
   </ion-list>
+
 </ion-content>

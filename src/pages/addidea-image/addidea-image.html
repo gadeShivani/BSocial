@@ -1,0 +1,21 @@
+<!--
+  Generated template for the AddideaImagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Add Image For Idea</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="colorchange" padding>
+  <input type="file" (change)="this.uploadImage($event)" />
+<progressbar [progress]="this.uploadPercent | async"></progressbar>
+<img class="uploaded-image" [src]="downloadURL | async">
+<button ion-button full (click)="nextstep()">Next</button>
+</ion-content>

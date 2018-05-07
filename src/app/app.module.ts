@@ -14,18 +14,22 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
 import { AppdataProvider } from '../providers/appdata/appdata';
 import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { UserdataProvider } from '../providers/userdata/userdata';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    SignupPage
+    SignupPage,
+
     ],
   imports: [
     BrowserModule,
     NgxErrorsModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig.fire),
+    AngularFireStorageModule,
     AngularFirestoreModule.enablePersistence() //.enablePersistence() used for offline storage
   ],
   bootstrap: [IonicApp],
@@ -41,7 +45,8 @@ import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore'
     AngularFirestore,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    AppdataProvider
+    AppdataProvider,
+    UserdataProvider
   ]
 })
 export class AppModule {}
