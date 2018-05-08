@@ -16,6 +16,7 @@ import { AppdataProvider } from '../providers/appdata/appdata';
 import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { UserdataProvider } from '../providers/userdata/userdata';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UserdataProvider } from '../providers/userdata/userdata';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AppdataProvider,
-    UserdataProvider
+    UserdataProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

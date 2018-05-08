@@ -5,6 +5,8 @@ import {LoginPage} from '../../pages/login/login';
 import {AppdataProvider} from '../../providers/appdata/appdata';
 import { AlertController } from 'ionic-angular';
 import {AddideaImagePage} from '../../pages/addidea-image/addidea-image';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 /**
  * Generated class for the IdeasPage page.
  *
@@ -19,7 +21,7 @@ import {AddideaImagePage} from '../../pages/addidea-image/addidea-image';
 })
 export class IdeasPage {
   ideas:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public auth: AuthProvider,public appdata:AppdataProvider) {
+  constructor(public navCtrl: NavController,public socialSharing: SocialSharing, public navParams: NavParams, public alertCtrl: AlertController,public auth: AuthProvider,public appdata:AppdataProvider) {
     if(!(this.auth.getCurrentUser())){
       this.navCtrl.setRoot(LoginPage);
     }else{
@@ -54,6 +56,15 @@ export class IdeasPage {
   }
   isLiked(likes){
     return likes.includes((this.auth.getCurrentUser()).uid)
+  }
+  shareThis(idea){
+    var msg = "Checkout this idea on BSocial App!!"+ idea.idea_title +idea.idea_description;
+    this.socialSharing.share(msg, null, null, null);
+    // this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+    //   // Success!
+    // }).catch(() => {
+    // // Error!
+    // });
   }
 
 }

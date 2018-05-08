@@ -9,7 +9,7 @@ interface Items {
   idea_title:string,
   idea_description:string,
   image:string,
-  likes:[],
+  likes:[string],
   totalLikes:number
   uid:string,
   date_added:number
