@@ -24,7 +24,6 @@ export class IdeasPage {
       this.navCtrl.setRoot(LoginPage);
     }else{
       this.ideas=this.appdata.getIdeas();
-
     }
 
   }
@@ -33,48 +32,28 @@ export class IdeasPage {
   }
 
   addIdea(){
-    this.navCtrl.push('AddideaImagePage');
-    // let alert = this.alertCtrl.create({
-    //   title: 'Add Idea',
-    //   message: 'Enter details for the idea you are adding',
-    //   inputs: [
-    //     {
-    //       name: 'idea_title',
-    //       placeholder: 'Idea Title'
-    //     },
-    //     {
-    //       name: 'idea_description',
-    //       placeholder: 'Idea Description'
-    //     },
-    //     {name:'image',
-    //       type:'file',
-    //       change: this.appdata.uploadimage($event)
-    //     }
-    //   ],
-    //   buttons: [
-    //     {
-    //       text: 'Cancel',
-    //       handler: () => {
-    //         console.log('Cancel clicked');
-    //       }
-    //     },
-    //     {
-    //       text: 'Submit',
-    //       handler: data => {
-    //         let date = new Date();
-    //         let month = String(date.getMonth()+1);
-    //
-    //         let year = String(date.getFullYear());
-    //
-    //         let date_added =  (month+year);
-    //         this.appdata.addIdea(data,(this.auth.getCurrentUser()).uid,date_added)
-    //       }
-    //     }
-    //   ]
-    // });
-    //
-    // alert.present();
+    let date = new Date();
+    let month = date.getMonth()+1;
 
+    let year = date.getFullYear();
+
+    let date_added =  (month*10000+year);
+    // if(this.appdata.checkIfPreviously((this.auth.getCurrentUser()).uid,date_added) == true){
+      this.navCtrl.push('AddideaImagePage');
+    // }
+    // else
+    // {
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Idea Already Submitted',
+    //     subTitle: 'You have already submitted an idea this month, please wait untill next month.',
+    //     buttons: ['See other Ideas!']
+    //   });
+    //   alert.present();
+    // }
+
+  }
+  isLiked(likes){
+    return likes.includes((this.auth.getCurrentUser()).uid)
   }
 
 }

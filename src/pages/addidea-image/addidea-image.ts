@@ -22,7 +22,6 @@ import 'rxjs/add/operator/map';
 export class AddideaImagePage {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-  durl:string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider,private storage: AngularFireStorage) {
   }
 

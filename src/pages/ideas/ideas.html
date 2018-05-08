@@ -8,7 +8,7 @@
 
 
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar  hideBackButton color="primary">
     <ion-buttons float-left>
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -36,15 +36,16 @@
     <ion-card-content>
 
       <p>
-        {{idea.idea_description}}
+        {{idea.idea_description}} {{idea.id}}
       </p>
     </ion-card-content>
 
     <ion-row  no-padding>
       <ion-col col-6 text-center>
-        <button ion-button clear small color="secondary" icon-start>
-          <ion-icon name='heart'></ion-icon>
-          Like {{idea.totalLikes}}
+        <button ion-button clear small color="secondary" icon-start (click)="this.appdata.likeIdea(idea)">
+          <ion-icon name='heart' *ngIf="isLiked(idea.likes)"></ion-icon>
+          <ion-icon name='heart-outline' *ngIf="!isLiked(idea.likes)"></ion-icon>
+           {{idea.totalLikes}}
         </button>
       </ion-col>
       <ion-col  col-6 text-center>

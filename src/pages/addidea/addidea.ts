@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {AppdataProvider} from '../../providers/appdata/appdata';
 import { AuthProvider } from '../../providers/auth/auth';
 import {LoginPage} from '../../pages/login/login';
+import {MenuPage} from '../../pages/menu/menu';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 /**
@@ -25,7 +26,9 @@ export class AddideaPage {
   constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public appdata:AppdataProvider, private formBuilder: FormBuilder,public auth: AuthProvider) {
     if(!(this.auth.getCurrentUser())){
       this.navCtrl.setRoot(LoginPage);
-    }else{
+    }
+    else
+    {
       this.durl = this.navParams.get('durl');
       if(this.durl.value){
         this.idea = this.formBuilder.group({
@@ -45,11 +48,11 @@ export class AddideaPage {
   addIdea()
   {
     let date = new Date();
-    let month = String(date.getMonth()+1);
+    let month = date.getMonth()+1;
 
-    let year = String(date.getFullYear());
+    let year = date.getFullYear();
 
-    let date_added =  (month+year);
+    let date_added =  (month*10000+year);
     this.appdata.addIdea(this.idea,(this.auth.getCurrentUser()).uid,date_added);
 
     let alert = this.alertCtrl.create({
@@ -58,5 +61,6 @@ export class AddideaPage {
       buttons: ['See other Ideas!']
     });
     alert.present();
+    this.navCtrl.push('MenuPage');
   }
 }
