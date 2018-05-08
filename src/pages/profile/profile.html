@@ -23,24 +23,22 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list>
+      <ion-list *ngFor="let user of users | async">
         <ion-item>
-          <img class="circle-pic" src="assets/imgs/rachel.jpg" />
+          <img class="circle-pic" src="{{user.image}}"/>
         </ion-item>
+      <input type="file" (change)="this.uploadImage($event)" />
 
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" value="Rachel Green"></ion-input>
-      </ion-item>
-
-      <!-- <ion-item>
-        <ion-label floating>New Password</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" value="{{user.full_name}}"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Confirm New Password</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item> -->
+
+        <ion-input type="text" value="{{downloadURL | async}}" hidden></ion-input>
+      </ion-item>
+      <button ion-button color="primary" full (click)="updatethisUser(user)">Save</button>
+
     </ion-list>
 
     </ion-card-content>
@@ -48,35 +46,5 @@
   </ion-card>
 
 
-
-<ion-card>
-
-  <ion-card-header text-center color="light">
-    Weekly updates on
-  </ion-card-header>
-
-  <ion-card-content>
-    <ion-list>
-
-      <ion-item>
-        <ion-label>New Ideas</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Liked Ideas</ion-label>
-        <ion-checkbox disabled="true"></ion-checkbox>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Winners</ion-label>
-        <ion-checkbox></ion-checkbox>
-      </ion-item>
-
-    </ion-list>
-  </ion-card-content>
-
-</ion-card>
-<button ion-button color="primary" full>Save</button>
 
 </ion-content>
