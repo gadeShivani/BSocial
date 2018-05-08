@@ -18,7 +18,7 @@ admin.initializeApp();
 // });
 exports.createProfile = functions.auth.user()
     .onCreate((userRecord, context) => {
-    return admin.database().ref('/users/${userRecord.uid}').set({
+    return admin.firestore().doc('/users/' + userRecord.uid).set({
         full_name: 'What should we call you',
         uid: userRecord.uid,
         image: 'http://www.scuolacalcioaldaroma.it/wp-content/uploads/2015/08/icon-profile.png'
