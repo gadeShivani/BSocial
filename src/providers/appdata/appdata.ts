@@ -15,6 +15,16 @@ interface Items {
   date_added:number
 }
 interface ItemsId extends Items { id: string; }
+interface Results {
+  idea_title:string,
+  idea_description:string,
+  image:string,
+  likes:[string],
+  totalLikes:number
+  uid:string,
+  date_added:number
+}
+interface ResultsId extends Results { id: string; }
 /*
   Generated class for the AppdataProvider provider.
 
@@ -26,11 +36,11 @@ export class AppdataProvider {
 
   ideasCollection: AngularFirestoreCollection<Items>; //Firestore collection
   ideas: Observable<Items[]>;
-  // resultsize:any;
+
+  resultsCollection: AngularFirestoreCollection<Results>; //Firestore collection
+  results: Observable<Results[]>;
   constructor(private afs: AngularFirestore, private auth: AuthProvider) {
-    // if(!(this.auth.getCurrentUser())){
-    //   this.navCtrl.setRoot(LoginPage);
-    // }else{
+
     let date = new Date();
     let month = date.getMonth()+1;
 
@@ -45,10 +55,23 @@ export class AppdataProvider {
         return { id, ...data };
       });
     });
-  // }
+    let r_date_added = (((month-1)*10000)+year)
+    console.log(r_date_added);
+    this.resultsCollection = this.afs.collection('results', ref => ref.where('date_added',"==",r_date_added)); //ref()
+    this.results = this.ideasCollection.snapshotChanges().map(actions => { //this helps in getting id
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Items;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
+    });
+
 }
   getIdeas():Observable<Items[]>{
     return this.ideas;
+  }
+  getResults():Observable<Results[]>{
+    return this.results;
   }
 
   addIdea(data,uid,date){

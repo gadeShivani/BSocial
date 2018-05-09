@@ -10,6 +10,13 @@ page-addidea-image {
     -webkit-animation: Colorchange 46s ease infinite;
 
   }
+  input{
+    width:100%;
+    background: white;
+  }
+  .mt-60{
+    margin-top: 60px !important;
+  }
 
  @keyframes Colorchange {
    0%{background-position:11% 0%}

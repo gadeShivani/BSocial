@@ -17,6 +17,9 @@ import { AngularFirestoreModule,AngularFirestore } from 'angularfire2/firestore'
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { UserdataProvider } from '../providers/userdata/userdata';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ResultdataProvider } from '../providers/resultdata/resultdata';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
   ],
   providers: [
     StatusBar,
+    ScreenOrientation,
     SplashScreen,
     AngularFireAuth,
     AngularFirestore,
@@ -48,7 +52,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     AuthProvider,
     AppdataProvider,
     UserdataProvider,
-    SocialSharing
-  ]
+    SocialSharing,
+    ResultdataProvider  ]
 })
 export class AppModule {}

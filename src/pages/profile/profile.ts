@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import {UserdataProvider} from '../../providers/userdata/userdata';
@@ -14,14 +15,20 @@ import 'rxjs/add/operator/map';
 })
 export class ProfilePage {
   users:any;
+  imageChanged:boolean = false;
+  private resultForm : FormGroup;
   uploadPercent: Observable<number>;
   downloadURL: any;
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController,public navParams: NavParams,public auth:AuthProvider, public userdata: UserdataProvider, private storage: AngularFireStorage) {
-    if(!(this.auth.getCurrentUser())){
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController,private formBuilder: FormBuilder,public navParams: NavParams,public auth:AuthProvider, public userdata: UserdataProvider, private storage: AngularFireStorage) {
+    this.resultForm = this.formBuilder.group({
+    username: ['', Validators.required]
+  });
+
+  if(!(this.auth.getCurrentUser())){
       this.navCtrl.setRoot(LoginPage);
     }else{
       this.users = this.userdata.getUser();
-    }
+}
   }
 
   ionViewDidLoad() {
@@ -30,7 +37,6 @@ export class ProfilePage {
   uploadImage(event){
 
     const file = event.target.files[0];
-    const date=new Date();
     // const timestamp = Math.floor(date/1000);
     const filePath = 'userImages/' + (this.auth.getCurrentUser()).uid;
     const task = this.storage.upload(filePath, file);
@@ -38,15 +44,18 @@ export class ProfilePage {
      this.uploadPercent = task.percentageChanges();
     // get notified when the download URL is available
      this.downloadURL = task.downloadURL();
+     this.imageChanged = true;
     }
-    updatethisUser(user){
+    updateUser(user){
       let imageurl='';
-      if(this.downloadURL){
-        imageurl = this.downloadURL.value;
+      if(this.imageChanged){
+        imageurl = this.downloadURL.promise.__zone_symbol__value;
       }
       else{
         imageurl = user.image;
       }
+      console.log(imageurl);
+      user.full_name = this.resultForm.value.username;
       this.userdata.updateUser(user,imageurl);
       let alert = this.alertCtrl.create({
         title: 'Profile Updated',
@@ -54,6 +63,7 @@ export class ProfilePage {
         buttons: ['Dismiss']
       });
       alert.present();
+      this.imageChanged = false;
     }
 
 }

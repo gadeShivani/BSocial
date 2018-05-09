@@ -53,6 +53,7 @@ export class AddideaPage {
     let year = date.getFullYear();
 
     let date_added =  (month*10000+year);
+    
     this.appdata.addIdea(this.idea,(this.auth.getCurrentUser()).uid,date_added);
 
     let alert = this.alertCtrl.create({

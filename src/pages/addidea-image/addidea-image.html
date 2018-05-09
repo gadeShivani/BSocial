@@ -13,9 +13,9 @@
 </ion-header>
 
 
-<ion-content class="colorchange" padding>
-  <input type="file" (change)="this.uploadImage($event)" />
+<ion-content class="colorchange" padding text-center>
+<input type="file" (change)="this.uploadImage($event)" />
 <progressbar [progress]="this.uploadPercent | async"></progressbar>
 <img class="uploaded-image" [src]="downloadURL | async">
-<button ion-button full (click)="nextstep()">Next</button>
+<button class="mt-60" ion-button full (click)="nextstep()">Next</button>
 </ion-content>

@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Rachel Green</ion-title>
+    <ion-title>Your Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -23,21 +23,19 @@
     </ion-card-header>
 
     <ion-card-content>
+
       <ion-list *ngFor="let user of users | async">
         <ion-item>
           <img class="circle-pic" src="{{user.image}}"/>
         </ion-item>
       <input type="file" (change)="this.uploadImage($event)" />
-
+      <form [formGroup]="resultForm" (ngSubmit)="updateUser(user)">
       <ion-item>
-        <ion-label floating>Name</ion-label>
-        <ion-input type="text" value="{{user.full_name}}"></ion-input>
+        <ion-label floating>Name {{uploadPercent | async}}</ion-label>
+        <ion-input type="text" formControlName="username" value="{{user.full_name}}"></ion-input>
       </ion-item>
-      <ion-item>
-
-        <ion-input type="text" value="{{downloadURL | async}}" hidden></ion-input>
-      </ion-item>
-      <button ion-button color="primary" full (click)="updatethisUser(user)">Save</button>
+      <button ion-button type="submit" color="primary" full>Save</button>
+    </form>
 
     </ion-list>
 
